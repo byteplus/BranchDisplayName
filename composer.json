@@ -1,0 +1,32 @@
+{
+    "name": "byteplus/branch-name-display",
+    "description": "Git Branch name display",
+    "type": "dev",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Byteplus\\BranchNameDisplay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Byteplus"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Byteplus\\BranchNameDisplay\\BranchNameDisplayServiceProvider"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/byteplus/branch-name-display"
+        }
+    ]
+}
