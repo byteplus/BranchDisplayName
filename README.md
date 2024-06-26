@@ -33,10 +33,10 @@ This will enable the branch name display only for **local** and **staging** envi
 It is required to published the CSS file.
 
 ```
-php artisan vendor:publish --tag=public --tag=views
+php artisan vendor:publish --tag=public
 ```
 
-Publish the view file.
+Publish the view file is optional.
 
 ```
 php artisan vendor:publish --tag=views
@@ -71,12 +71,6 @@ This will ensure the branch name is displayed according to your configuration se
 ```
 php artisan view:clear
 php artisan cache:clear
-```
-
-> In some cases we may need to restart our service.
-```
-ctrl + c
-php artisan serve
 ```
 <br>
 <br>
