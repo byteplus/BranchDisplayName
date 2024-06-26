@@ -3,6 +3,8 @@
 **Overview**
 
 This package allows you to display the current Git branch name on your Laravel application. It is especially useful for development and staging environments.
+<br>
+<br>
 
 **Installation**
 
@@ -11,6 +13,8 @@ To install the package, run the following command:
 ```
 composer require byteplus/branch-name-display
 ```
+<br>
+<br>
 
 **Configuration**
 
@@ -21,7 +25,8 @@ DISPLAY_BRANCH_NAME=true
 ```
 
 This will enable the branch name display only for **local** and **staging** environments by default.
-
+<br>
+<br>
 
 **Publishing Assets**
 
@@ -38,6 +43,8 @@ php artisan vendor:publish --tag=views
 ```
 
 Feel free to customize them as needed.
+<br>
+<br>
 
 **Customization**
 
@@ -46,6 +53,8 @@ The appearance of the branch name display can be customized by modifying the pub
 ```
 public/css/branch-name-display.css
 ```
+<br>
+<br>
 
 **Usage**
 
@@ -69,11 +78,15 @@ php artisan cache:clear
 ctrl + c
 php artisan serve
 ```
+<br>
+<br>
 
 **Author**
 
 Byteplus
 mail@3design-bg.com
+<br>
+<br>
 
 **License**
 
