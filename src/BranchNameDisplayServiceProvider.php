@@ -22,9 +22,9 @@ class BranchNameDisplayServiceProvider extends ServiceProvider
             $view->with('branchName', $branch);
         });
 
-            // Include the Blade directive
-        Blade::directive('branchNameDisplay', function () {
-            return "<?php echo view('branch-name-display::display'); ?>";
+        // Include the Blade directive
+        Blade::directive('conditionalBranchNameDisplay', function () {
+            return "<?php if(env('DISPLAY_BRANCH_NAME', false) && app()->environment() !== 'production') { echo view('branch-name-display::display')->render(); } ?>";
         });
 
         // Publish the CSS file
@@ -40,10 +40,6 @@ class BranchNameDisplayServiceProvider extends ServiceProvider
         // Automatically inject branch name display in the layout file
         View::composer('layouts.app', function ($view) {
             $view->getFactory()->startSection('branchNameDisplay', "<?php echo view('branch-name-display::display'); ?>");
-        });
-
-        View::composer('layouts.app', function ($view) {
-            $view->with('branchNameDisplay', view('branch-name-display::display'));
         });
     }
 

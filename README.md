@@ -1,31 +1,68 @@
 # Show Branch Name
 
-> A simple Laravel package to display the current Git branch name in your application.
+**Overview**
+
+This package allows you to display the current Git branch name on your Laravel application. It is especially useful for development and staging environments.
 
 **Installation**
 
 To install the package, run the following command:
+
 ```
 composer require byteplus/branch-name-display
 ```
 
+**Configuration**
+
+In your **.env** file, add the following line to control the visibility of the branch name:
+
+```
+DISPLAY_BRANCH_NAME=true
+```
+
+This will enable the branch name display only for **local** and **staging** environments by default.
+
 **Publishing Assets**
 
-Publish the CSS file. You can modify it as needed:
+Publish the CSS and view files. Feel free to customize them as needed:
+
 ```
-php artisan vendor:publish --tag=public
+php artisan vendor:publish --tag=public --tag=views
+```
+
+**Customization**
+
+The appearance of the branch name display can be customized by modifying the published CSS file located at:
+
+```
+public/css/branch-name-display.css
 ```
 
 **Usage**
 
-By default, the branch name display will be injected into **layouts.app**.
+To use the branch name display, add the Blade directive right after the opening <body> tag in your **layouts.app** file:
 
-If you want to display the branch name in other places, you can use the following Blade directive:
 ```
-@branchNameDisplay
+@conditionalBranchNameDisplay
+```
+
+This will ensure the branch name is displayed according to your configuration settings.
+
+> Note: If you don't see the changes immediately, you may need to clear the cache by running the following command:
+
+```
+php artisan view:clear
+php artisan cache:clear
+```
+
+> In some cases we may need to restart our service.
+```
+ctrl + c
+php artisan serve
 ```
 
 **Author**
+
 Byteplus
 mail@3design-bg.com
 
