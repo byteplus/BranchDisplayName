@@ -22,13 +22,22 @@ DISPLAY_BRANCH_NAME=true
 
 This will enable the branch name display only for **local** and **staging** environments by default.
 
+
 **Publishing Assets**
 
-Publish the CSS and view files. Feel free to customize them as needed:
+It is required to published the CSS file.
 
 ```
 php artisan vendor:publish --tag=public --tag=views
 ```
+
+Publish the view file.
+
+```
+php artisan vendor:publish --tag=views
+```
+
+Feel free to customize them as needed.
 
 **Customization**
 
