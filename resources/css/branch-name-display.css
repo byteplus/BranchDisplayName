@@ -1,0 +1,13 @@
+.branch-name-display {
+    position: fixed;
+    top: 10%;
+    right: 10px;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.3); /* 70% transparent black */
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transition: right 0.5s ease, left 0.5s ease;
+}

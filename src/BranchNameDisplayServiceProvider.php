@@ -27,11 +27,24 @@ class BranchNameDisplayServiceProvider extends ServiceProvider
             return "<?php echo view('branch-name-display::display'); ?>";
         });
 
+        // Publish the CSS file
+        $this->publishes([
+            __DIR__ . '/../resources/css/branch-name-display.css' => public_path('css/branch-name-display.css'),
+        ], 'public');
+
         // Publish configuration
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/branch- name-display'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/branch-name-display'),
         ], 'views');
 
+        // Automatically inject branch name display in the layout file
+        View::composer('layouts.app', function ($view) {
+            $view->getFactory()->startSection('branchNameDisplay', "<?php echo view('branch-name-display::display'); ?>");
+        });
+
+        View::composer('layouts.app', function ($view) {
+            $view->with('branchNameDisplay', view('branch-name-display::display'));
+        });
     }
 
     /**
