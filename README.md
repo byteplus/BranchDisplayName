@@ -11,7 +11,7 @@ This package allows you to display the current Git branch name on your Laravel a
 To install the package, run the following command:
 
 ```
-composer require byteplus/branch-name-display
+composer require byteplus/branch-name-display --dev
 ```
 <br>
 <br>
