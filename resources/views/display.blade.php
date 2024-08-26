@@ -1,12 +1,23 @@
-<link rel="stylesheet" href="{{ asset('css/branch-name-display.css') }}">
+<style>
+    .branch-display {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 4px;
+        z-index: 9999;
+    }
+    </style>
 
-<div class="branch-name-display" id="branchNameDisplay">
-    <div class="content">
-        Branch: {{ $branchName }}
+    <div class="branch-display">
+        Current Branch: {{ $branchName }}
     </div>
-</div>
 
-<script>
+
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const branchNameDisplay = document.getElementById('branchNameDisplay');
         let isOnRightSide = true;
@@ -23,4 +34,4 @@
             }
         });
     });
-</script>
+</script> --}}

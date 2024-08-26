@@ -1,54 +1,56 @@
 <?php
+
 namespace byteplus\BranchNameDisplay;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 
 class BranchNameDisplayServiceProvider extends ServiceProvider
 {
     /**
-    * Bootstrap any application services. *
-    * @return void
-    */
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        // Publish the view
+        var_dump('dsdsds'); exit;
+        // Load views from the package
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'branch-name-display');
 
-        // Share the branch name with all views
-        View::composer('*', function ($view) {
-            $branch = trim(exec('git rev-parse --abbrev-ref HEAD'));
-            $view->with('branchName', $branch);
-        });
+        // Conditionally share branch name with all views
+        if ($this->shouldDisplayBranchName()) {
+            // Share the branch name with all views
+            View::composer('*', function ($view) {
+                $branch = trim(exec('git rev-parse --abbrev-ref HEAD'));
+                $view->with('branchName', $branch);
+            });
 
-        // Include the Blade directive
-        Blade::directive('conditionalBranchNameDisplay', function () {
-            return "<?php if(env('DISPLAY_BRANCH_NAME', false) && app()->environment() !== 'production') { echo view('branch-name-display::display')->render(); } ?>";
-        });
-
-        // Publish the CSS file
-        $this->publishes([
-            __DIR__ . '/../resources/css/branch-name-display.css' => public_path('css/branch-name-display.css'),
-        ], 'public');
-
-        // Publish configuration
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/branch-name-display'),
-        ], 'views');
-
-        // Automatically inject branch name display in the layout file
-        View::composer('layouts.app', function ($view) {
-            $view->getFactory()->startSection('branchNameDisplay', "<?php echo view('branch-name-display::display'); ?>");
-        });
+            // Inject the branch name display in the layout if condition is met
+            View::composer('layouts.app', function ($view) {
+                $view->getFactory()->startSection('branchNameDisplay', view('branch-name-display::display')->render());
+            });
+        }
     }
 
     /**
-    * Register any application services. *
-    * @return void
-    */
+     * Determine if the branch name should be displayed.
+     *
+     * @return bool
+     */
+    protected function shouldDisplayBranchName()
+    {
+        return env('DISPLAY_BRANCH_NAME', false) && app()->environment() !== 'production';
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
-        //
+        // Register package configurations or bindings here
     }
 }
+
